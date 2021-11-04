@@ -26,7 +26,7 @@ function logKey(e) { // If a key is pressed
 	}
 	
 	if(finished) { // Make sure loading is finished
-		if(text.innerHtml == "Start typing...") {
+		if(text.innerHTML == "Start typing...") {
 			typed = true;
 			text.innerHtml = "";
 		}
