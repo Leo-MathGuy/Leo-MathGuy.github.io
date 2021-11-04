@@ -28,7 +28,7 @@ function logKey(e) { // If a key is pressed
 	if(finished) { // Make sure loading is finished
 		if(text.innerHTML == "Start typing...") {
 			typed = true;
-			text.innerHtml = "";
+			text.innerHTML = '';
 		}
 		e = e.key; // Key pressed
 		if(e.length == 1 && e != "+" && e != "-" || e == "space") { // Basic hackertyping
