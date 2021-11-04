@@ -13,8 +13,8 @@ var text = document.getElementById("text");
 
 // The hackertyper code
 var code = hackkkk(); // From code.js
-var count = 0; // Total position
-var char = 0;
+var count = 1; // Total position
+var char = 1;
 var len = 1; // Characters to add
 var codeLen = code.length; // Length of code
 
@@ -26,7 +26,7 @@ function logKey(e) { // If a key is pressed
 	}
 	
 	if(finished) { // Make sure loading is finished
-		if(!typed) {
+		if(text.innerHtml == "Start typing...") {
 			typed = true;
 			text.innerHtml = "";
 		}
