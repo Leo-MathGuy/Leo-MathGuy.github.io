@@ -9,7 +9,7 @@ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 */
 
-text = document.getElementById("text");
+var text = document.getElementById("text");
 
 // The hackertyper code
 var code = hackkkk(); // From code.js
@@ -26,6 +26,10 @@ function logKey(e) { // If a key is pressed
 	}
 	
 	if(finished) { // Make sure loading is finished
+		if(!typed) {
+			typed = true;
+			text.innerHtml = "";
+		}
 		e = e.key; // Key pressed
 		if(e.length == 1 && e != "+" && e != "-" || e == "space") { // Basic hackertyping
 			for(var i = 0; i < len; i++) {

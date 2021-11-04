@@ -78,13 +78,20 @@ for(let i = 0; i < 101; i++) { // 100 times
 
 let b = 0;
 
+var typed = false;
+
 function ending() {
 	setTimeout(function() {
 		finished = true;
 		document.getElementById("progress").remove();
 		document.getElementById("progressText").remove();
 		document.getElementById("bigTextThingy").remove();
-        document.title = "Geek Typer"
+        document.title = "Geek Typer";
+        setTimeout(function() {
+        	if(!typed) {
+        		text.innerHTML = "Start typing";
+        	}
+        }, 5000)
 	}, 1000);
 
 }
