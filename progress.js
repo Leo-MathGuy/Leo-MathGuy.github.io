@@ -84,7 +84,7 @@ var text = document.getElementById("text");
 function go() {
 	setTimeout(function() {
         if(!typed) {
-        	text.innerHTML = "Start typing";
+        	text.innerHTML = "Start typing...";
         }
     }, 5000);
 }
