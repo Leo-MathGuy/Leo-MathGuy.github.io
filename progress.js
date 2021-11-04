@@ -79,6 +79,15 @@ for(let i = 0; i < 101; i++) { // 100 times
 let b = 0;
 
 var typed = false;
+var text = document.getElementById("text");
+
+function go() {
+	setTimeout(function() {
+        if(!typed) {
+        	text.innerHTML = "Start typing";
+        }
+    }, 5000);
+}
 
 function ending() {
 	setTimeout(function() {
@@ -87,11 +96,8 @@ function ending() {
 		document.getElementById("progressText").remove();
 		document.getElementById("bigTextThingy").remove();
         document.title = "Geek Typer";
-        setTimeout(function() {
-        	if(!typed) {
-        		text.innerHTML = "Start typing";
-        	}
-        }, 5000)
+        go();
 	}, 1000);
 
 }
+
