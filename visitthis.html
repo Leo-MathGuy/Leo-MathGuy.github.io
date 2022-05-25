@@ -105,6 +105,8 @@
 </style>
 
 <script>
+    rickroll = new Audio("rickroll.mp3");
+    
     function clicked() {
         document.getElementById("rickbutton").onclick = "#";
         document.getElementById("pthing").innerHTML = "Redirecting...";
@@ -112,7 +114,6 @@
         sleep(1000).then(() => {
             document.getElementById("confirm").remove();
             document.getElementById("container-big").style.visibility = "visible";
-            rickroll = new Audio("rickroll.mp3");
             rickroll.play();
             rickroll.loop = true;
         });
