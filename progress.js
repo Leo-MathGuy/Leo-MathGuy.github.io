@@ -100,4 +100,3 @@ function ending() {
 	}, 1000);
 
 }
-
