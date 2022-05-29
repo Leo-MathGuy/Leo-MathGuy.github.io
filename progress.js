@@ -21,7 +21,7 @@ inter = setInterval(function() {
 
 }, 250);
 */
-var skipBar = false;
+var skipBar = true;
 
 var finished = false;
 

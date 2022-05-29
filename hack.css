@@ -66,6 +66,7 @@ body {
 #text {
 	color: #39ff14;
 	font-family: monospace;
+	white-space: pre;
 }
 
 #debug1, #debug2 , #debug3{

@@ -17,6 +17,7 @@ var count = 1; // Total position
 var char = 1;
 var len = 1; // Characters to add
 var codeLen = code.length; // Length of code
+var currentText = ""; // Thing to store current text
 
 document.addEventListener("keydown", logKey); // Wait for keystrokes
 
@@ -28,23 +29,17 @@ function logKey(e) { // If a key is pressed
 	if(finished) { // Make sure loading is finished
 		if(text.innerHTML == "Start typing...") {
 			typed = true;
-			text.innerHTML = text.innerHTML.substring(0, 0); // Blank
+			text.innerHTML = ""; // Blank
 		}
 		e = e.key; // Key pressed
 		if(e.length == 1 && e != "+" && e != "-" || e == "space") { // Basic hackertyping
 			for(var i = 0; i < len; i++) {
+				typed = true;
 				char = count % codeLen;
 				textOps('add', e);
 			}
-		} else if(e == "Backspace") {
-			text.innerHTML = text.innerHTML.substring(0, text.innerHTML.length - 1);
-			count--;
-			
-			if(dBug) {
-				document.getElementById("debug1").innerHTML = "Absolute Position: " + count;
-				document.getElementById("debug2").innerHTML = "Iteration: " + Math.floor(count/codeLen);
-				document.getElementById("debug3").innerHTML = "Current Character: " + char;
-			}
+		} else if(e == "Backspace" && count > 0) {
+			textOps('remove', e)
 		}
 	}
 }
@@ -55,33 +50,45 @@ var dBug = false;
 
 function textOps(mode, key) {
 	
-	if(mode == 'add') {
-		
-		if(dBug) {
-			document.getElementById("debug1").innerHTML = "Absolute Position: " + count;
-			document.getElementById("debug2").innerHTML = "Iteration: " + Math.floor(count/codeLen);
-			document.getElementById("debug3").innerHTML = "Current Character: " + char;
-		}
-	
-		if(code[char] == '\\') {
-			if(code[char+1] == 'n') {
-				text.innerHTML += '</br>';
-			}
-			count += 3;
-		}
-			
-		text.innerHTML += code[count % codeLen];
+	if(mode == 'add') { 
 		count++;
-	
+		char = count % codeLen;
+
+		currentText = "";
+		
+		for (var i = 0; i < Math.floor(count/codeLen); i++) {
+			currentText += code;
+		}
+
+		currentText += code.substring(0, char-1);
+
 		for(var i = 0; i < 5; i++) {
 			if(dList[i] == key) {
 				textOps('debugCheck', key);
 			}
 		}
+
+		text.innerHTML = currentText.replace("\n", "<br>").replace("\t", "    ");
+
+		if(dBug) {
+			document.getElementById("debug1").innerHTML = "Absolute Position: " + count;
+			document.getElementById("debug2").innerHTML = "Iteration: " + Math.floor(count/codeLen);
+			document.getElementById("debug3").innerHTML = "Current Character: " + char;
+		}
 	}
 	
 	if(mode == 'remove') {
+		count--;
+		char = count % codeLen;
 		
+		currentText = currentText.substring(0, currentText.length-1);
+		text.innerHTML = currentText.replace("\n", "<br/>").replace("\t", "    ");
+
+		if(dBug) {
+			document.getElementById("debug1").innerHTML = "Absolute Position: " + count;
+			document.getElementById("debug2").innerHTML = "Iteration: " + Math.floor(count/codeLen);
+			document.getElementById("debug3").innerHTML = "Current Character: " + char;
+		}
 	}
 	
 	if(mode == 'debugCheck') {
@@ -92,6 +99,8 @@ function textOps(mode, key) {
 				dCount = 0;
 				textOps('debug', null);
 			}
+		} else if(key == dList[0]) {
+			dCount = 1;
 		} else {
 			dCount = 0;
 		}
@@ -110,4 +119,5 @@ function textOps(mode, key) {
 			dBug = true;
 		}
 	}
+	document.getElementById('alsotext').scrollIntoView();
 }
