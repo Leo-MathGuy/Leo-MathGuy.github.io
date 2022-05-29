@@ -21,7 +21,7 @@ inter = setInterval(function() {
 
 }, 250);
 */
-var skipBar = true;
+var skipBar = false;
 
 var finished = false;
 
@@ -57,11 +57,11 @@ for(let i = 0; i < 101; i++) { // 100 times
 		}
 	
 		if(i > 97) { // Ending
-			end = 750;
+			end = 500;
 		}
 		
 		if(i == 100) { // Ending also
-			end = 2500; // Long by tradition
+			end = 1500; // Long by tradition
 		}
 		
 	}
