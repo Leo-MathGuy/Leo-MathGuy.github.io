@@ -13,6 +13,7 @@ h1 {
 }
 
 heading {
+    width: 100%;
     display: table-cell;
     vertical-align: bottom;
     height: 40vw;
