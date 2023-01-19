@@ -50,6 +50,7 @@ function drawIntro(frame) {
 }
 
 function draw() {
+    clearBg()
     if (introStatus == 0) {
         drawIntro(introFrame);
         introFrame += 1;
