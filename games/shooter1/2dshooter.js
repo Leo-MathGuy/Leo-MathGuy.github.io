@@ -60,3 +60,4 @@ function draw() {
 }
 stats.innerHTML = "Hi";
 requestAnimationFrame(draw);
+window.alert("!!!!")
