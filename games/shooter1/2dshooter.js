@@ -48,13 +48,14 @@ function drawIntro(frame) {
         return;
     }
 }
-
+var stats = document.getElementById("status");
 function draw() {
     clearBg()
     if (introStatus == 0) {
         drawIntro(introFrame);
         introFrame += 1;
     }
+    stats.innerHtml = introFrame.toString() + introStatus.toString();
     requestAnimationFrame(draw);
 }
 
