@@ -10,7 +10,7 @@ var ctx = c.getContext();
 
 function clearBg() {
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, width, height);
 }
 
@@ -28,7 +28,7 @@ function drawIntro(frame) {
     */
 
     if (frame >= 60 && frame <= 90) {
-        ctx.fillStyle = "#FFF";
+        ctx.fillStyle = "#FFFFFF";
         ctx.textAlign = "center";
         ctx.font = "20px Arial";
         ctx.fillText("By Leo-MathGuy", 400, 300);
