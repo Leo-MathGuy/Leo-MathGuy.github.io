@@ -28,7 +28,7 @@ function drawIntro(frame) {
     */
 
     if (frame >= 60 && frame <= 90) {
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = "#FFFFFF";
         ctx.textAlign = "center";
         ctx.font = "20px Arial";
         ctx.fillText("By Leo-MathGuy", 400, 300);
@@ -38,7 +38,7 @@ function drawIntro(frame) {
         var fontSize = blurPercent;
         fontSize *= 20;
 
-        ctx.fillStyle = "#FFF";
+        ctx.fillStyle = "#FFFFFF";
         ctx.textAlign = "center";
         ctx.font = fontSize.toString() + "px Arial";
         ctx.fillText("By Leo-MathGuy", 400, 300);
