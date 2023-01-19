@@ -6,7 +6,7 @@ var width = 800;
 
 
 /** @type {CanvasRenderingContext2D} */
-var ctx = c.getContext();
+var ctx = c.getContext('2d');
 
 function clearBg() {
     ctx.clearRect(0, 0, width, height);
@@ -58,6 +58,4 @@ function draw() {
     stats.innerHtml = introFrame.toString() + introStatus.toString();
     requestAnimationFrame(draw);
 }
-stats.innerHTML = "Hi";
 requestAnimationFrame(draw);
-window.alert("!!!!")
