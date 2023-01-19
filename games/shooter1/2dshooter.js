@@ -28,7 +28,7 @@ function drawIntro(frame) {
     */
 
     if (frame >= 60 && frame <= 90) {
-        ctx.fillStyle = "#FFFFFF";
+        ctx.fillStyle = "#000000";
         ctx.textAlign = "center";
         ctx.font = "20px Arial";
         ctx.fillText("By Leo-MathGuy", 400, 300);
