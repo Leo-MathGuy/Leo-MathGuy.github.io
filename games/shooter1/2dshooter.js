@@ -58,5 +58,5 @@ function draw() {
     stats.innerHtml = introFrame.toString() + introStatus.toString();
     requestAnimationFrame(draw);
 }
-
+stats.innerHTML = "Hi";
 requestAnimationFrame(draw);
