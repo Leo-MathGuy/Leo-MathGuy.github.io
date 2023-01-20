@@ -21,7 +21,7 @@
 </body>
 
 <script>
-/** @type {Element} */
+/** @type {HTMLCanvasElement} */
 var c = document.getElementById("mainscreen");
 
 var height = 600;
@@ -29,7 +29,7 @@ var width = 800;
 
 
 /** @type {CanvasRenderingctx2D} */
-var ctx = c.getctx('2d');
+var ctx = c.getContext('2d');
 
 function getMousePos(canvas, event) {
     var rect = canvas.getBoundingClientRect();
