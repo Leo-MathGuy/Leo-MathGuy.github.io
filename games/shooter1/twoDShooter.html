@@ -53,6 +53,8 @@ function drawIntro() {
     grd.addColorStop(0, "black");
     grd.addColorStop(0.5, "#d3d3d3");
     grd.addColorStop(1, "black");
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,800,600);
     if (introTextX < 300 || introTextX > 500) {
         introTextX += 15;
     }
