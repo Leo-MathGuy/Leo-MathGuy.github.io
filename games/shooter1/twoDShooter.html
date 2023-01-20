@@ -43,12 +43,12 @@ var introTextX = -60;
 
 function drawIntro() {
     if (introTextX < 300 || introTextX > 500) {
-        introTextX += 5;
+        introTextX += 10;
     }
     if (introTextX >= 300 && introTextX <= 500) {
-        introTextX += 2;
+        introTextX += 5;
     }
-    if (introTextX > 1000) {
+    if (introTextX > 1100) {
         introStatus = 1;
         return;
     }
