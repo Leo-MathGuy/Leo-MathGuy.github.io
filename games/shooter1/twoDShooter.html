@@ -21,6 +21,52 @@
     <p id="status">here</p>
 </body>
 
-<script src="2dshooter.js"></script>
+<script>
+/** @type {Element} */
+var c = document.getElementById("mainscreen");
+
+var height = 600;
+var width = 800;
+
+
+/** @type {CanvasRenderingContext2D} */
+var ctx = c.getContext('2d');
+
+function clearBg() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, width, height);
+}
+
+var introStatus = 0; // 0 - Not complete  1 - Complete
+var introTextX = -60;
+
+function drawIntro() {
+    if (introTextX < 300 || introTextX > 500) {
+        introTextX += 5;
+    }
+    if (introTextX >= 300 && introTextX <= 500) {
+        introTextX += 2;
+    }
+    if (introTextX > 1000) {
+        introStatus = 1;
+        return;
+    }
+    ctx.fillStyle = "#FFFFFF";
+    ctx.textAlign = "right";
+    ctx.font = "35px Arial";
+    ctx.fillText("By Leo-MathGuy", introTextX, 300);
+}
+var stats = document.getElementById("status");
+function draw() {
+    clearBg()
+    if (introStatus == 0) {
+        drawIntro();
+    }
+    stats.innerHtml = introTextX.toString();
+    requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+</script>
 
 </html>
