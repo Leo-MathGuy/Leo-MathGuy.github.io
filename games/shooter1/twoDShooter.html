@@ -233,6 +233,9 @@ var particles = [];
 
 function drawGame() {
     player.draw();
+    projectiles.forEach((value, index, array) => {value.update(); value.draw();});
+    particles.forEach((value, index, array) => {value.update(); value.draw();});
+    enemies.forEach((value, index, array) => {value.update(); value.draw();})
 }
 
 
