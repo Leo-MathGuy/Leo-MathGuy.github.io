@@ -59,7 +59,7 @@
     document.onmousemove = updateHovers;
 
     function updateHovers(event) {
-        Object.entries(updateHovers).forEach(([key, value]) => {
+        Object.entries(checkHover).forEach(([key, value]) => {
             var cursorBelower = event.pageY <= value.y;
             var cursorLefter = event.pageX <= value.x+value.width;
             var cursorUpper = event.pageY >= value.y+value.height;
