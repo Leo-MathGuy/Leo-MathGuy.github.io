@@ -7,5 +7,5 @@ My version of hackertyper
 # Desmos
 My desmos drawing for school
 
-# Game
-A shooter game
+# Rocket game
+A rocket game

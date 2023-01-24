@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById("myCanvas");
+
+    /** @type {CanvasRenderingContext2D} */
+    let ctx = canvas.getContext("2d");
+
+    let lastRender = Date.now();
+    let scene = "mainmenu"
+    function render() {
+        let delta = Date.now() - lastRender;
+
+        if (scene = "mainmenu") {
+            draw_main_menu();
+        }
+
+        requestAnimationFrame(render);
+    }
+
+    checkHover = {};
+
+    class Button {
+        constructor(x, y, w, h, c, hc, name) {
+            this.x = x;
+            this.y = y;
+            this.width = w;
+            this.height = h;
+            this.color = c;
+            this.hovercolor = hc
+            this.hover = false;
+            this.name = name
+            checkHover[this.name] = false;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.fillStyle = c;
+            ctx.stroke = 3;
+            ctx.strokeStyle = "black";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+            ctx.closePath();
+        }
+
+        checkHover() {
+            this.hover = checkHover[this.name]
+        }
+    }
+    document.onmousemove = updateHovers;
+
+    function updateHovers(event) {
+        mousepos = {"x":event.clientx, "y":event.clienty}
+
+        Object.entries(updateHovers).forEach(([key, value]) => {
+            var cursorBelower = mousepos["y"] <= value.y;
+            var cursorLefter = mousepos["x"] <= value.x+value.width;
+            var cursorUpper = mousepos["y"] >= value.y+value.height;
+            var cursorRighter = mousepos["x"] >= value.x;
+            updateHovers[key] = cursorBelower && cursorLefter && cursorRighter && cursorUpper;
+        });
+    }
+
+    // Draw main menu
+    var startButton;
+    function init_main_menu() {
+        startButton = new Button(250, 225, 300, 150, "red", "darkred", "start");
+    }
+
+    function draw_main_menu() {
+        startButton.updateHovers();
+        startButton.draw();
+    }
+
+
+    render();
+</script>
+</html>
