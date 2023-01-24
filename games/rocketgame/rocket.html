@@ -79,9 +79,9 @@
     function init_main_menu() {
         startButton = new Button(250, 225, 300, 150, "red", "darkred", "start");
     }
-
+    init_main_menu();
     function draw_main_menu() {
-        startButton.updateHovers();
+        startButton.checkHover();
         startButton.draw();
     }
 
