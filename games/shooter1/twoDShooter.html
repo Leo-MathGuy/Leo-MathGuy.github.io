@@ -45,9 +45,18 @@ function clearBg() {
     ctx.fillRect(0, 0, width, height);
 }
 
+
+// INTRO //
 var introStatus = -1; // -1 - Not started  0 - Not complete  1 - Complete
 var introTextX = -60;
-
+function startButton() {
+    ctx.fillStyle = '#FFAA44'; 
+    ctx.fillRect(300, 250, 200, 100); 
+    ctx.font = '20pt Roboto';
+    ctx.fillStyle = '#FFFFFF';
+    ctx.textAlign = "center";
+    ctx.fillText('Start', 400, 310);
+  }
 function drawIntro() {
     var grd = ctx.createLinearGradient(0,0,0,600);
     grd.addColorStop(0, "black");
@@ -70,8 +79,163 @@ function drawIntro() {
     ctx.font = "40px Arial";
     ctx.fillText("By Leo-MathGuy", introTextX, 300);
 }
+c.addEventListener('click', function(evt) {
+    var mousePos = getMousePos(c, evt);
 
-var stats = document.getElementById("status");
+    if (introStatus == -1) {
+        if (mousePos.x >= 300 && mousePos.y >= 250 && mousePos.x <= 500 && mousePos.y <= 350) {
+            introStatus = 0;
+        }
+    }
+}, false);
+
+// THE GAME ITSELF //
+class Player {
+    constructor () {
+        this.x = 400;
+        this.y = 300;
+        this.radius = 25;
+        this.color = "white";
+    }
+
+    draw() {
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, Math.PI * 2, false);
+        c.fillStyle = this.color;
+        c.fill();
+    }
+}
+
+
+class Projectile {
+    constructor(x, y, radius, color, velocity) {
+        this.x = x;
+        this.y = y;
+
+        this.radius = radius;
+        this.color = color;
+        this.velocity = velocity;
+    }
+
+    draw() {
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, Math.PI * 2, false);
+        c.fillStyle = this.color;
+        c.fill();
+    }
+
+    update() {
+        this.draw();
+        this.x = this.x + this.velocity.x;
+        this.y = this.y + this.velocity.y;
+    }
+}
+
+var player = new Player();
+
+
+
+class Enemy {
+    constructor(x, y, radius, color, velocity) {
+        this.x = x;
+        this.y = y;
+
+        this.radius = radius;
+        this.color = color;
+        this.velocity = velocity;
+    }
+
+    draw() {
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, Math.PI * 2, false);
+        c.fillStyle = this.color;
+        c.fill();
+    }
+
+    update() {
+        this.draw();
+        this.x = this.x + this.velocity.x * 2;
+        this.y = this.y + this.velocity.y * 2;
+    }
+
+}
+
+
+class Particle {
+    constructor(x, y, radius, color, velocity) {
+        this.x = x;
+        this.y = y;
+
+        this.radius = radius;
+        this.color = color;
+        this.velocity = velocity;
+        this.alpha = 1;
+        this.friction = 0.95;
+    }
+
+    draw() {
+        c.save();
+        c.globalAlpha = this.alpha;
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, Math.PI * 2, false);
+        c.fillStyle = this.color;
+        c.fill();
+        c.restore();
+    }
+
+    update() {
+        this.draw();
+        this.x = this.x + this.velocity.x * 3;
+        this.y = this.y + this.velocity.y * 3;
+        this.alpha -= 0.01;
+        this.velocity.x *= this.friction;
+        this.velocity.y *= this.friction;
+    }
+}
+
+var enemies = [];
+
+
+var iId;
+
+function beginInvasion() {
+    enemies = [];
+    iId = setInterval(() => {
+        var min = 5;
+        var max = 50;
+
+        const radius = Math.random() * (max - min) + min;
+
+        if (Math.random() < 0.5) {
+            var x = Math.random() < 0.5 ? 0 - radius : canvas.width + radius;
+            var y = Math.random() * canvas.height;
+            var side = false;
+        } else {
+            var x = Math.random() * canvas.width;
+            var y = Math.random() < 0.5 ? 0 - radius : canvas.height + radius;
+            var side = true;
+        }
+        const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+
+        const angle = Math.atan2(canvas.height / 2 - y, canvas.width / 2 - x);
+
+        const velocity = {
+            x: Math.cos(angle) * 1.15,
+            y: Math.sin(angle) * 1.15
+        };
+
+        enemies.push(new Enemy(x, y, radius, color, velocity));
+    }, 2000);
+}
+
+var projectiles = [];
+var particles = [];
+
+function drawGame() {
+    player.draw();
+}
+
+
 function draw() {
     clearBg()
     if (introStatus == 0) {
@@ -83,24 +247,6 @@ function draw() {
     requestAnimationFrame(draw);
 }
 
-function startButton() {
-    ctx.fillStyle = '#FFAA44'; 
-    ctx.fillRect(300, 250, 200, 100); 
-    ctx.font = '20pt Roboto';
-    ctx.fillStyle = '#FFFFFF';
-    ctx.textAlign = "center";
-    ctx.fillText('Start', 400, 310);
-  }
-
-c.addEventListener('click', function(evt) {
-    var mousePos = getMousePos(c, evt);
-
-    if (introStatus == -1) {
-        if (mousePos.x >= 300 && mousePos.y >= 250 && mousePos.x <= 500 && mousePos.y <= 350) {
-            introStatus = 0;
-        }
-    }
-}, false);
 
 requestAnimationFrame(draw);
 </script>
