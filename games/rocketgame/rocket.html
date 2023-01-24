@@ -48,7 +48,7 @@
         }
 
         checkHover() {
-            this.hover = checkHover[this.name]
+            this.hover = checkHover[this.name].hover
             if (this.hover) {
                 this.curcolor = this.hovercolor;
             } else {
@@ -64,7 +64,7 @@
             var cursorLefter = event.pageX <= value.x+value.width;
             var cursorUpper = event.pageY >= value.y+value.height;
             var cursorRighter = event.pageX >= value.x;
-            updateHovers[key] = cursorBelower && cursorLefter && cursorRighter && cursorUpper;
+            updateHovers[key].hover = cursorBelower && cursorLefter && cursorRighter && cursorUpper;
         });
     }
 
