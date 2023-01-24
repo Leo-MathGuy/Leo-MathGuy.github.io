@@ -43,16 +43,16 @@
         }
 
         draw() {
-            ctx.fillStyle = self.curcolor;
+            ctx.fillStyle = this.curcolor;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
 
         checkHover() {
             this.hover = checkHover[this.name]
             if (this.hover) {
-                this.curcolor = self.hovercolor;
+                this.curcolor = this.hovercolor;
             } else {
-                this.curcolor = self.color;
+                this.curcolor = this.color;
             }
         }
     }
