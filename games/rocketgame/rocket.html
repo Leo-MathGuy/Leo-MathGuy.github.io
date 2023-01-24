@@ -19,7 +19,7 @@
     let scene = "mainmenu"
     function render() {
         let delta = Date.now() - lastRender;
-
+        ctx.clearRect(0,0,800,600);
         if (scene = "mainmenu") {
             draw_main_menu();
         }
@@ -44,7 +44,7 @@
 
         draw() {
             ctx.beginPath();
-            ctx.fillStyle = c;
+            ctx.fillStyle = self.curcolor;
             ctx.stroke = 3;
             ctx.strokeStyle = "black";
             ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -53,6 +53,11 @@
 
         checkHover() {
             this.hover = checkHover[this.name]
+            if (this.hover) {
+                this.curcolor = self.hovercolor;
+            } else {
+                this.curcolor = self.color;
+            }
         }
     }
     document.onmousemove = updateHovers;
