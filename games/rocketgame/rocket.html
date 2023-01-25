@@ -58,15 +58,17 @@
     }
 
     class TextCanvas {
-        constructor(x, y, style, text) {
+        constructor(x, y, color, style, text) {
             this.x = x;
             this.y = y;
             this.style = style;
+            this.color = color
             this.text = text;
         }
 
         draw() {
-            ctx.fillStyle = this.style;
+            ctx.fillStyle = this.color;
+            ctx.font = this.style;
             ctx.fillText(this.text, this.x, this.y);
         }
     }
@@ -85,7 +87,7 @@
 
     // Draw main menu
     var startButton = new Button(275, 225, 250, 150, "#FF0000", "#AA0000", "start");
-    var startButtonText = new TextCanvas(275, 250, "20pt Roboto", "Start Game");
+    var startButtonText = new TextCanvas(275, 250, "black", "20pt Roboto", "Start Game");
 
     function draw_main_menu() {
         startButton.checkHover();
