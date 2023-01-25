@@ -39,7 +39,7 @@
             this.hovercolor = hc
             this.hover = false;
             this.name = name
-            checkHover[this.name] = this;
+            checkHover[this.name] = {y:this.y, x:this.x, width:this.width, height:this.height, hover:this.hover};
         }
 
         draw() {
@@ -48,7 +48,7 @@
         }
 
         checkHover() {
-            this.hover = checkHover[this.name].hover
+            this.hover = checkHover[this.name].hover;
             if (this.hover) {
                 this.curcolor = this.hovercolor;
             } else {
@@ -60,11 +60,11 @@
 
     function updateHovers(event) {
         Object.entries(checkHover).forEach(([key, value]) => {
-            var cursorBelower = event.pageY <= value.y;
-            var cursorLefter = event.pageX <= value.x+value.width;
-            var cursorUpper = event.pageY >= value.y+value.height;
-            var cursorRighter = event.pageX >= value.x;
-            updateHovers[key].hover = cursorBelower && cursorLefter && cursorRighter && cursorUpper;
+            var isRighter = event.pageX >= value.x;
+            var isLefter = event.pageX <= (value.x+value.width);
+            var isBottomer = event.pageY >= value.y;
+            var isUpper = event.pageY <= (value.y+value.height);
+            checkHover[key].hover = isBottomer && isLefter && isRighter && isUpper;
         });
     }
 
