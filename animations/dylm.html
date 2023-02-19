@@ -7,42 +7,28 @@
     <title>Animation 1</title>
 </head>
 <body>
-<div id="stage"></div>
+<div id="canvas"></div>
 </body>
 <style>
-    html, main {
-        margin: 0;
-        padding: 0;
-    }
+html, main {
+    margin: 0;
+    padding: 0;
+}
+    #canvas {
+    width: 600px;
+    height: 400px;
+    padding: 0;
+    margin: 0;
+    background-color:#E0E0E0;
+    left:0;
+    top:0;
+    position:absolute;
+}
 </style>
-<script src="https://unpkg.com/konva@8/konva.min.js"></script>
-<script>
-    var data = [[77, 122, 99], [48, 81, 106], [99, 50, 77], [106, 65, 50], [78, 106, 99], [50, 78, 106], [73, 121, 77], [68, 99, 122], [78, 122, 65], [51, 77, 106], [90, 68, 77], [106, 65, 51], [78, 68, 90], [68, 77, 48], [89, 61, 0]];
-    var stage = new Konva.stage({
-        container: 'stage',
-        width:600,
-        height:400
-    });
-
-    var background = new Konva.Layer();
-
-    var background_rects_part_1 = [];
-    data.forEach((value, index, array) => {
-        background_rects_part_1.push(
-            new Konva.Rect({
-                x:(index*(600/data.length)),
-                y:0,
-                width:600/data.length,
-                fill:rgb(value[0], value[1], value[2]),
-                strokeWidth:0
-            })
-        )
-    });
-
-    background_rects_part_1.forEach((value, index, array) => {
-        background.add(value);
-    });
-    stage.add(background);
-    background.draw()
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/MotionPathPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/TextPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/EasePack.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/CustomEase.min.js"></script>
+<script src="./dylm.js"></script>
 </html>
