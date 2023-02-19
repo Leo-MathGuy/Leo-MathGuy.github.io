@@ -140,7 +140,7 @@ part_2_base64_title.style.fontSize = "12pt";
 part_2_base64_title.style.bottom = "30px";
 part_2_base64_title.style.right = "20px";
 part_2_base64_title.style.opacity = 0;
-part_2_base64_title.innerHTML = "Base64 Decode"
+part_2_base64_title.innerHTML = "Base64 Decode";
 
 document.getElementById("canvas").appendChild(part_2_base64_title);
 
@@ -169,7 +169,6 @@ part_2_base64_decoded.style.opacity = 0;
 document.getElementById("canvas").appendChild(part_2_base64_title);
 
 tl.to(part_2_base64_decoded, {
-  delay: 0.5,
   opacity: 1,
   onStart: () => {
     part_2_base64_decoded.innerHTML = atob(part_1_result);
