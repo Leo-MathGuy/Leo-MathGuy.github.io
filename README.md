@@ -9,3 +9,6 @@ My desmos drawing for school
 
 # Rocket game
 A rocket game
+
+# Animations
+Animations?

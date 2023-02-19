@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation 1</title>
+</head>
+<body>
+<div id="stage"></div>
+</body>
+<style>
+    html, main {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<script src="https://unpkg.com/konva@8/konva.min.js"></script>
+<script>
+    var data = [[77, 122, 99], [48, 81, 106], [99, 50, 77], [106, 65, 50], [78, 106, 99], [50, 78, 106], [73, 121, 77], [68, 99, 122], [78, 122, 65], [51, 77, 106], [90, 68, 77], [106, 65, 51], [78, 68, 90], [68, 77, 48], [89, 61, 0]];
+    var stage = new Konva.stage({
+        container: 'stage',
+        width:600,
+        height:400
+    });
+
+    var background = new Konva.Layer();
+
+    var background_rects_part_1 = [];
+    data.forEach((value, index, array) => {
+        background_rects_part_1.push(
+            new Konva.Rect({
+                x:(index*(600/data.length)),
+                y:0,
+                width:600/data.length,
+                fill:rgb(value[0], value[1], value[2])
+            })
+        )
+    })
+</script>
+</html>
