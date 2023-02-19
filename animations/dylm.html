@@ -37,6 +37,12 @@
                 strokeWidth:0
             })
         )
-    })
+    });
+
+    background_rects_part_1.forEach((value, index, array) => {
+        background.add(value);
+    });
+    stage.add(background);
+    background.draw()
 </script>
 </html>
