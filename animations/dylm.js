@@ -1,8 +1,14 @@
 var data = [
   [77, 122, 99],
-  [50, 79, 68],
-  [89, 53, 78],
-  [107, 69, 61]
+  [48, 82, 84],
+  [89, 49, 78],
+  [122, 73, 50],
+  [78, 68, 73],
+  [120, 77, 106],
+  [69, 121, 77],
+  [84, 73, 120],
+  [77, 106, 69],
+  [61, 0, 0]
 ];
 // Stage 1: Colors to oct
 var part_1_rects = [];
@@ -51,7 +57,7 @@ part_1_text_dec.style.opacity = 0;
 
 document.getElementById("canvas").appendChild(part_1_text_dec);
 
-let tl = gsap.timeline({ defaults: { duration: 0.5 } });
+let tl = gsap.timeline({ defaults: { duration: 0.15 } });
 
 function change_part_1_text_to(text) {
   part_1_text.innerHTML = text;
@@ -169,7 +175,7 @@ tl.to(
   {
     opacity: 1,
     onStart: () => {
-      part_2_base64_decoded.innerHTML = atob(part_1_result);
+      part_2_base64_decoded.innerHTML = atob(part_1_text_result.innerHTML);
     }
   },
   "<"
@@ -282,13 +288,10 @@ tl.to(part_4_title, {
 
     before_ceasar_text.forEach((val, indx, arr) => {
       document.getElementById("canvas").appendChild(before_ceasar_text[indx]);
-      tl.to(
-        before_ceasar_text[indx],
-        {
-          opacity: 1,
-          bottom: "30px"
-        }
-      );
+      tl.to(before_ceasar_text[indx], {
+        opacity: 1,
+        bottom: "30px"
+      });
     });
   }
 });
