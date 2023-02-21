@@ -1,12 +1,8 @@
 var data = [
   [77, 122, 99],
-  [48, 81, 122],
-  [99, 49, 78],
-  [107, 69, 51],
-  [78, 106, 90],
-  [67, 78, 107],
-  [77, 50, 81],
-  [103, 61, 61]
+  [50, 79, 68],
+  [89, 53, 78],
+  [107, 69, 61]
 ];
 // Stage 1: Colors to oct
 var part_1_rects = [];
@@ -55,7 +51,7 @@ part_1_text_dec.style.opacity = 0;
 
 document.getElementById("canvas").appendChild(part_1_text_dec);
 
-let tl = gsap.timeline({ defaults: { duration: 0.2 } });
+let tl = gsap.timeline({ defaults: { duration: 0.5 } });
 
 function change_part_1_text_to(text) {
   part_1_text.innerHTML = text;
@@ -166,11 +162,133 @@ part_2_base64_decoded.style.bottom = "50px";
 part_2_base64_decoded.style.left = "20px";
 part_2_base64_decoded.style.opacity = 0;
 
-document.getElementById("canvas").appendChild(part_2_base64_title);
+document.getElementById("canvas").appendChild(part_2_base64_decoded);
+
+tl.to(
+  part_2_base64_decoded,
+  {
+    opacity: 1,
+    onStart: () => {
+      part_2_base64_decoded.innerHTML = atob(part_1_result);
+    }
+  },
+  "<"
+);
+
+tl.to(part_1_text_result, {
+  opacity: 0,
+  delay: 0.5
+});
+
+tl.to(
+  part_2_base64_decoded,
+  {
+    bottom: "10px"
+  },
+  "<"
+);
+
+tl.to(
+  part_2_base64_title,
+  {
+    opacity: 0
+  },
+  "<"
+);
+
+var part_3_start = document.createElement("span");
+part_3_start.style.position = "absolute";
+part_3_start.style.fontFamily = "roboto";
+part_3_start.style.fontSize = "10pt";
+part_3_start.style.bottom = "10px";
+part_3_start.style.left = "20px";
+part_3_start.style.opacity = 0;
+document.getElementById("canvas").appendChild(part_3_start);
+
+function space(s) {
+  // https://www.tutorialspoint.com/javascript-insert-space-after-every-two-letters-in-string
+  return s.toString().replace(/.{2}(?=.)/g, "$& ");
+}
+var hexes = [];
+var hex_texts = [];
+var temp_hex;
 
 tl.to(part_2_base64_decoded, {
-  opacity: 1,
+  opacity: 0,
+  left: "600px",
+  duration: 0.1,
   onStart: () => {
-    part_2_base64_decoded.innerHTML = atob(part_1_result);
+    space(part_2_base64_decoded.innerHTML)
+      .split(" ")
+      .forEach((val, indx, arr) => {
+        hexes.push(val);
+        temp_hex = document.createElement("span");
+        temp_hex.style.position = "absolute";
+        temp_hex.style.fontFamily = "roboto";
+        temp_hex.style.fontSize = "10pt";
+        temp_hex.style.bottom = "10px";
+        temp_hex.style.left = (20 + 20 * indx).toString() + "px";
+        temp_hex.style.opacity = 1;
+        temp_hex.innerHTML = val;
+        hex_texts.push(temp_hex);
+      });
+
+    hex_texts.forEach((val, indx, arr) => {
+      document.getElementById("canvas").appendChild(hex_texts[indx]);
+      tl.from(
+        hex_texts[indx],
+        {
+          opacity: 0
+        },
+        "<"
+      );
+    });
+  }
+});
+
+var part_4_title = document.createElement("span");
+part_4_title.style.position = "absolute";
+part_4_title.style.fontFamily = "roboto";
+part_4_title.style.fontSize = "12pt";
+part_4_title.style.bottom = "30px";
+part_4_title.style.right = "20px";
+part_4_title.style.opacity = 0;
+part_4_title.innerHTML = "Hexadecimals to ASCII";
+
+document.getElementById("canvas").appendChild(part_4_title);
+
+var before_ceasar = [];
+var before_ceasar_text = [];
+var temp_text;
+
+const hex2Char = (hex) => String.fromCharCode(parseInt(hex, 16)); //Michael M. on stack overflow
+
+tl.to(part_4_title, {
+  delay: 0.5,
+  opacity: 1,
+  onComplete: () => {
+    hexes.forEach((val, indx, arr) => {
+      before_ceasar.push(hex2Char(val));
+      temp_text = document.createElement("span");
+      temp_text.style.position = "absolute";
+      temp_text.style.fontFamily = "roboto";
+      temp_text.style.fontSize = "10pt";
+      temp_text.style.bottom = "-10px";
+      temp_text.style.left = (20 + 20 * indx).toString() + "px";
+      temp_text.style.opacity = 0;
+      temp_text.innerHTML = hex2Char(val);
+      before_ceasar_text.push(temp_text);
+    });
+
+    before_ceasar_text.forEach((val, indx, arr) => {
+      document.getElementById("canvas").appendChild(before_ceasar_text[indx]);
+      tl.to(
+        before_ceasar_text[indx],
+        {
+          opacity: 1,
+          bottom: "30px"
+        }
+      );
+    });
   }
 });
