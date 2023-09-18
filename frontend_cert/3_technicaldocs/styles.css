@@ -1,0 +1,191 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#main-doc {
+  padding: 5px 25px;
+  margin: auto;
+  margin-top: 5px;
+
+  width: 95%;
+}
+
+header {
+  padding-bottom: 5px;
+  border-bottom: 2px solid black;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.nav-link {
+  padding: 7px;
+
+  border: 1px solid #444;
+  border-radius: 5px;
+
+  color: black;
+
+  text-align: center;
+  text-decoration: none;
+
+  flex-basis: 200px;
+}
+
+h1 {
+  font-weight: normal;
+
+  width: 100%;
+  text-align: center;
+}
+
+.main-section {
+  padding: 20px;
+  margin: 5px 5px 0;
+
+  border: 2px solid #999;
+
+  border-radius: 18px;
+}
+
+.main-section header {
+  width: fit-content;
+
+  padding: 0 20px 5px;
+  margin: auto;
+
+  border-bottom: 3px solid #999;
+
+  font-size: 26px;
+}
+
+code,
+#sorting-list {
+  display: inline-block;
+
+  width: fit-content;
+  max-width: 90%;
+
+  overflow-x: auto;
+
+  margin-left: 15px;
+  padding: 15px 20px;
+
+  border: 2px solid #444;
+  border-radius: 10px;
+
+  background-color: #CCC;
+
+  font-family: monospace;
+  font-size: 13px;
+}
+
+code {
+  white-space: pre;
+}
+
+#sorting-list {
+  padding-left: 50px;
+}
+
+#sorting-list b {
+  color: rgb(8, 160, 8);
+}
+
+#sorting-list b::before {
+  content: "";
+  margin-right: 5px;
+  border-left: 2px solid green;
+}
+
+p,
+a {
+  font-size: 17px;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+li {
+  letter-spacing: 2px;
+}
+
+@media (max-width: 800px) {
+  #navbar {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .nav-link {
+    margin: 0px 5px;
+    flex-basis: 15px;
+  }
+
+  #main-doc {
+    padding: 0px;
+    width: calc(100% - 30px);
+  }
+
+  .main-section {
+    margin: 5px 0;
+  }
+}
+
+@media (min-width: 801px) {
+  #navbar {
+    position: fixed;
+
+    width: 250px;
+    height: 100vh;
+
+    border-right: 2px solid #777;
+
+    left: 0;
+    top: 0;
+  }
+
+  .nav-link {
+    display: block;
+
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #666;
+    border-radius: 0;
+
+    background: none;
+
+    text-align: left;
+  }
+
+  #main-doc {
+    position: absolute;
+
+    width: calc(100% - 250px);
+
+    left: 250px;
+    top: 0;
+  }
+}
+
+#switch-text {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  padding: 8px 16px;
+  margin: 0;
+
+  background-color: white;
+
+  font-size: 20px;
+  font-family: sans-serif;
+  text-align: right;
+}

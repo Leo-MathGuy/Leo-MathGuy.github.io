@@ -1,0 +1,353 @@
+/*
+position
+position-vars
+
+width
+height
+width-height-vars
+
+display
+display-vars
+
+padding
+margin
+
+border
+border-vars
+
+bg-vars
+
+flex-stuff
+
+font-vars
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --blur-amount: 15px;
+}
+
+#bg-img {
+    position: fixed;
+
+    width: 100vw;
+    height: 100vh;
+
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    background-image: url("https://media.istockphoto.com/id/479842074/photo/empty-road-at-building-exterior.jpg?s=612x612&w=0&k=20&c=SbyfZGN0i2O_QPLCdBcu9vhuzbQvTz4bGEn-lIzrN0E=");
+    filter: blur(5px);
+}
+
+html {
+    margin: 0;
+    padding: 0;
+
+    background-color: rgb(122, 175, 255);
+}
+
+body {
+    margin: auto auto;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#title-wrap {
+    width: 100%;
+
+    display: flex;
+
+    padding: var(--form-padding);
+
+    border: 7px solid #888;
+    border-bottom: 3px solid #aaa;
+
+    background-color: #FFFFFF55;
+    backdrop-filter: blur(var(--blur-amount));
+    border-radius: var(--form-border-radius) var(--form-border-radius) 0 0;
+}
+
+#title {
+    margin: 0;
+
+    font-family: "Lato", sans-serif;
+}
+
+#logo {
+    width: var(--logo-size);
+
+    border-radius: 5px;
+}
+
+#logo-filler {
+    width: var(--logo-size);
+}
+
+nav {
+    width: 100%;
+
+    display: flex;
+
+    margin-top: 15px;
+
+    justify-content: space-around;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-family: "Roboto Mono";
+}
+
+main {
+    padding: var(--form-padding);
+
+    border: 7px solid #888;
+    border-top: 3px solid #aaa;
+
+    backdrop-filter: blur(var(--blur-amount));
+    background-color: #FFFFFF55;
+
+    font-family: "Montserrat", sans-serif;
+}
+
+#description {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+
+    margin: 10px 0;
+}
+
+input,
+select {
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+input[type='radio'] {
+    display: inline-block;
+}
+
+input[type='submit'] {
+    padding: 5px 10px;
+
+    font-size: 20px;
+}
+
+input[type='file'] {
+    border: none;
+}
+
+.placeholder,
+input {
+    font-family: "Roboto Mono";
+}
+
+.button {
+    width: fit-content;
+
+    margin: 0 5px;
+    padding: 5px;
+
+    border: 1px outset gray;
+    border-radius: 3px;
+
+    background-color: lightgray;
+
+    font-size: 12px;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 200;
+
+    user-select: none;
+}
+
+.button:active {
+    border: 1px inset gray;
+}
+
+@media screen and (min-width: 950px) {
+    :root {
+        --logo-size: 10vw;
+        --form-border-radius: 15px;
+        --form-padding: 20px;
+    }
+
+    #bg-img {
+        background-size: cover;
+        background-repeat: repeat-y;
+    }
+
+    body {
+        width: calc(50% + (var(--logo-size) * 1));
+    }
+
+    header {
+        margin: 25px 0 0;
+    }
+
+    #title-wrap {
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #title {
+        display: inline;
+
+        font-size: 2.3vw;
+    }
+
+    #logo {
+        display: inline-block;
+    }
+
+    #logo-filler {
+        display: block;
+    }
+
+    input[type='number'],
+    input[type='text'],
+    input[type='email'],
+    select {
+        width: 200px;
+    }
+
+    input[type='range'] {
+        width: 350px;
+
+        margin-top: 10px;
+    }
+
+    .label-text {
+        width: 40%;
+        min-width: 200px;
+
+        display: inline-block;
+    }
+
+    .button {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 949px) {
+    :root {
+        --logo-size: 25vw;
+        --form-border-radius: 25px;
+        --form-padding: 10px;
+    }
+
+    #bg-img {
+        display: inline-block !important;
+
+        background-repeat: repeat-y;
+        background-size: auto 100%;
+    }
+
+    body {
+        width: 90vw;
+    }
+
+    header {
+        margin: 15px 0 0;
+    }
+
+    #title-wrap {
+        flex-flow: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    nav {
+        padding-bottom: 5px;
+        border-bottom: 2px solid black;
+
+        flex-flow: row wrap;
+    }
+
+    nav a {
+        width: 49%;
+
+        padding: 4px 0;
+        margin: 0.5% 0;
+
+        border: 1px solid black;
+
+        text-align: center;
+        font-size: 15px;
+    }
+
+    #title {
+        display: inline;
+
+        font-size: 5vw;
+    }
+
+    #logo {
+        display: inline-block;
+    }
+
+    #logo-filler {
+        display: none;
+    }
+
+    main {
+        font-size: 12px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input[type='number'],
+    input[type='text'],
+    input[type='email'],
+    select {
+        width: 200px;
+    }
+
+    input[type='range'] {
+        width: 70vw;
+
+        margin-top: 5px;
+
+        display: block;
+    }
+
+    textarea {
+        max-width: 70vw;
+    }
+
+    .label-text {
+        width: 40%;
+        min-width: 200px;
+
+        display: inline-block;
+    }
+
+    .button {
+        display: inline-block;
+
+        padding: 2px;
+        margin: 2px;
+    }
+}

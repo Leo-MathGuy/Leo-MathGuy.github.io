@@ -1,0 +1,168 @@
+<!--
+  EXAMPLE OF MOBILE-DESKTOP RESPONSIVENESS, NOT WEB DEISGN
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bubble Sort Documentaton</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav id="navbar">
+    <header>
+      <h1>Bubble Sort</h1>
+    </header>
+    <a class="nav-link" href="#Theory">Theory</a>
+    <a class="nav-link" href="#Algorithm_Intro">Algorithm Intro</a>
+    <a class="nav-link" href="#Building_the_Algorithm">Building the Algorithm</a>
+    <a class="nav-link" href="#Running">Running</a>
+    <a class="nav-link" href="#Conclusion">Conclusion</a>
+  </nav>
+  <main id="main-doc">
+    <section class="main-section" id="Theory">
+      <header>Theory</header>
+      <p>Bubble sort is a very useful tool for teaching the basics of sorting, time and space complexity, while not
+        being a very efficent algorithm. (even being one of the slowest)</p>
+      <p>Bubble sort works by going through a list of length <i>n</i> many times, and comparing the current index and
+        the next index. If the right is smaller than the left, they two get switched. By the first pass, the rightmost
+        item is sorted (highest) and can be skipped. By the second pass, the last 2 elements are sorted, and so on.</p>
+      <p>The O(n) function shows how much time the algorithm takes with an input of <i>n</i> size. In this case, the
+        best case (already
+        sorted) is O(n) time, and the average/worst case is O(n^2) (1 item = 1 unit. 2 items =
+        4 units, so on...)
+      </p>
+      <p>
+        Because of this, it is seen as an introduction to sorting algorithms, with its simplicity and easiness to code.
+      </p>
+    </section>
+    <section class="main-section" id="Algorithm_Intro">
+      <header>Algorithm Intro</header>
+      <p>Now, we will code the algorithm using Python 3.<br>Lets say this is our initial list:</p>
+      <code>unsorted = [2, 7, 9, 4, 3, 6, 5, 10, 8, 1]</code>
+      <p>This is how it would be sorted:
+        <br>
+
+      <ol id="sorting-list">
+        <li>[2, 7, 9, 4, 3, 6, 5, 10, 8, 1]</li>
+        <li>[2, 7, 4, 3, 6, 5, 9, 8, 1, <b>10</b>]</li>
+        <li>[2, 4, 3, 6, 5, 7, 8, 1, <b>9, 10</b>]</li>
+        <li>[2, 3, 4, 5, 6, 7, 1, <b>8, 9, 10</b>]</li>
+        <li>[2, 3, 4, 5, 6, 1, <b>7, 8, 9, 10</b>]</li>
+        <li>[2, 3, 4, 5, 1, <b>6, 7, 8, 9, 10</b>]</li>
+        <li>[2, 3, 4, 1, <b>5, 1, 7, 8, 9, 10</b>]</li>
+        <li>[2, 3, 1, <b>4, 6, 1, 7, 8, 9, 10</b>]</li>
+        <li>[2, 1, <b>3, 5, 6, 1, 7, 8, 9, 10</b>]</li>
+        <li>[1, <b>2, 4, 5, 6, 1, 7, 8, 9, 10</b>]</li>
+        <li>[<b>1, 3, 4, 5, 6, 1, 7, 8, 9, 10</b>]</li>
+      </ol>
+      </p>
+    </section>
+    <section class="main-section" id="Building_the_Algorithm">
+      <header>Building the Algorithm</header>
+      <p>
+        Lets start with the basic function to swap two items:
+      </p>
+      <code>def swap(arr, a, b):
+    arr[a], arr[b] = arr[b], arr[a]
+    return arr
+</code>
+      <p>
+        And an iterator to iterate through the list:
+      </p>
+      <code>sorted = unsorted
+length = len(sorted)
+for run in range(0, length-1):
+    for index in range(0, length-run-1):
+        # code to swap
+</code>
+      <p>We swap when the left is greater than the right, so the full code is as follows:</p>
+      <code>unsorted = [2, 7, 9, 4, 3, 6, 5, 10, 8, 1]
+
+def swap(arr, a, b):
+    arr[a], arr[b] = arr[b], arr[a]
+    return arr
+
+sorted = unsorted
+print(unsorted)
+
+length = len(sorted)
+for run in range(0, length-1):
+    for index in range(0, length-run-1):
+        if sorted[index] > sorted[index+1]:
+            sorted = swap(sorted, index, index+1)
+    print(sorted)
+</code>
+    </section>
+    <section class="main-section" id="Running">
+      <header>Running</header>
+      <p>Now, we run the program and get the following output:</p>
+      <code>[2, 7, 9, 4, 3, 6, 5, 10, 8, 1]
+[2, 7, 4, 3, 6, 5, 9, 8, 1, 10]
+[2, 4, 3, 6, 5, 7, 8, 1, 9, 10]
+[2, 3, 4, 5, 6, 7, 1, 8, 9, 10]
+[2, 3, 4, 5, 6, 1, 7, 8, 9, 10]
+[2, 3, 4, 5, 1, 6, 7, 8, 9, 10]
+[2, 3, 4, 1, 5, 6, 7, 8, 9, 10]
+[2, 3, 1, 4, 5, 6, 7, 8, 9, 10]
+[2, 1, 3, 4, 5, 6, 7, 8, 9, 10]
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code>
+      <p>Just as expected!</p>
+    </section>
+    <section class="main-section" id="Conclusion">
+      <header>Conclusion</header>
+      <p>The bubble sort is incredibly inneficent, with a lot of faster algorithms like insertion, and the currently
+        fastest quicksort being used for actual implementations. It is a great way to introduce the time and space
+        complexity of algorithms, having a very
+        simple pattern it follows.</p>
+    </section>
+  </main>
+  <p id="switch-text">Loading...</p>
+</body>
+
+<script>
+  var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+  var switch_opacity = 0;
+  var up_down = 1;
+  var switchtext = document.getElementById("switch-text");
+  var tempcountdown = 400;
+
+  setInterval(() => {
+    vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+
+    if (up_down) {
+      switch_opacity += 0.01;
+      if (switch_opacity >= 1) {
+        up_down = 0;
+      }
+    } else {
+      switch_opacity -= 0.01;
+      if (switch_opacity <= 0) {
+        up_down = 1;
+      }
+    }
+
+    switchtext.style.opacity = switch_opacity * 100 + "%";
+
+    if (vw <= 800) {
+      switchtext.innerHTML = "Try desktop wide!";
+    }
+    else {
+      switchtext.innerHTML = "Try mobile tall!";
+    }
+
+    if (tempcountdown > 0) {
+      tempcountdown -= 1;
+      switchtext.innerHTML += "<br/><span style='opacity:" + tempcountdown / 100 + "'>(Use inspect element window)</span>"
+    }
+  }, 10);
+</script>
+
+</html>

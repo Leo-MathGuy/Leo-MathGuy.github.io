@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McKingFC Application</title>
+</head>
+
+<body>
+    <div id="bg-img"></div>
+    <header>
+        <div id="title-wrap">
+            <img src="https://fakeimg.pl/600x400/aaaaaa/eeeeee?text=Logo+Here&font=museo" alt="Logo" id="logo">
+            <h1 id="title">McKingFC Application</h1>
+            <div id="logo-filler"></div>
+            <nav>
+                <a href="#">Main Page</a>
+                <a href="#">Something</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <p id="description"><b>Back-End Developer</b> - Back-End website development with <i
+                class="placeholder">[framework]</i> and <i class="placeholder">[framework]</i>, using <i
+                class="placeholder">[database]</i>, and <i class="placeholder">[framework]</i> rendering</p>
+        <form action="/application/submit" method="post" id="survey-form">
+            <h3>Info:</h3>
+            <label for="name" id="name-label"><span class="label-text">First and last name: </span><input type="text"
+                    name="name" id="name" placeholder="John Doe" required></label>
+            <label for="email" id="email-label"><span class="label-text">Email: </span><input type="email" name="email"
+                    id="email" placeholder="john.doe@email.com" required></label>
+
+            <label for="phone" id="phone-label"><span class="label-text">Phone number (US #s only): </span>
+                <div><input type="range" name="phone" id="phone" min="0" max="9999999999" step="1" value="0"
+                        required><span id="phone-value">+1 (000)000-0000</span>
+                    <br>
+                    <div class="button" onclick="change_phone(-10000000)">-10000000</div>
+                    <div class="button" onclick="change_phone(-100000)">-100000</div>
+                    <div class="button" onclick="change_phone(-1000)">-1000</div>
+                    <div class="button" onclick="change_phone(-10)">-10</div>
+                    <div class="button" onclick="change_phone(-1)">-1</div>
+                    <br>
+                    <div class="button" onclick="change_phone( 10000000)">+10000000</div>
+                    <div class="button" onclick="change_phone( 100000)">+100000</div>
+                    <div class="button" onclick="change_phone( 1000)">+1000</div>
+                    <div class="button" onclick="change_phone( 10)">+10</div>
+                    <div class="button" onclick="change_phone( 1)">+1</div>
+                </div>
+            </label>
+
+            <h3>Job Info:</h3>
+            <label for="number" id="number-label"><span class="label-text">Salary expectation: $</span><input
+                    type="number" name="number" id="number" placeholder="-90,000 (we mug you)" min="0" max="500000"
+                    required></label>
+            <label for="dropdown"><span class="label-text">Position: </span>
+                <select name="dropdown" id="dropdown" required>
+                    <option value="intern">Intern</option>
+                    <option value="junior">Junior</option>
+                    <option value="senior">Senior</option>
+                </select>
+            </label>
+
+            <h3>Qualification Info:</h3>
+            <label>Are you smart?</label>
+            <label for="smart-yes"><input type="radio" name="smart" id="smart-yes" value="y" required>Yes</label>
+            <label for="smart-no"><input type="radio" name="smart" id="smart-no" value="n" required>No</label>
+
+            <label>Are you willing to give 100% of your inheritance to us?</label>
+            <label for="will-1"><input type="checkbox" name="will-1" id="will-1" value="1" required>Yes</label>
+            <label for="will-2"><input type="checkbox" name="will-2" id="will-2" value="2" required>Yes</label>
+            <label for="will-3"><input type="checkbox" name="will-3" id="will-3" value="3" required>Yes</label>
+            <label for="will-4"><input type="checkbox" name="will-4" id="will-4" value="4" required>Yes</label>
+
+            <label>Education level:</label>
+            <label for="edu-1"><input type="checkbox" name="edu-1" id="edu-1" value="1">High School</label>
+            <label for="edu-2"><input type="checkbox" name="edu-2" id="edu-2" value="2">Bachrelororls Degree</label>
+            <label for="edu-3"><input type="checkbox" name="edu-3" id="edu-3" value="3">Masters Degree</label>
+            <label for="edu-4"><input type="checkbox" name="edu-4" id="edu-4" value="4">Ph.D</label>
+
+            <h3>Additional Comments:</h3>
+            <textarea name="comments" id="comments" cols="50" rows="10"></textarea>
+            <h3>Resume:</h3>
+            <input type="file" name="resume" id="resume">
+            <br><br><br>
+
+            <input type="submit" id="submit" value="-> Send <-">
+        </form>
+    </main>
+    <script>
+        function change_phone(howmuch) {
+            document.getElementById('phone').value = parseInt(document.getElementById('phone').value) + howmuch;
+            update_phone();
+        }
+        function update_phone() {
+            let value = document.getElementById("phone").value;
+            value = String(value).padStart(10, "0");
+            value = "+1 (" + value.substring(0, 3) + ")" + value.substring(3, 6) + "-" + value.substring(6, 10);
+            document.getElementById("phone-value").innerHTML = value;
+        }
+        document.getElementById("phone").addEventListener('input', update_phone);
+
+        document.getElementById("number").addEventListener('input', () => {
+            let element = document.getElementById("number");
+            if (element.value > parseInt(element.max)) {
+                element.value = parseInt(element.max);
+            }
+        });
+    </script>
+</body>
+
+</html>
